@@ -1,7 +1,7 @@
-import React from "react"
-import styles from "./ProductCollection.module.css"
-import { Row, Col, Divider } from "antd"
-import ProductImage from "./ProductImage"
+import React from 'react'
+import styles from './ProductCollection.module.css'
+import { Row, Col, Divider } from 'antd'
+import ProductImage from './ProductImage'
 interface IProductCollectionProps {
   title: JSX.Element
   sideImage: string
@@ -17,7 +17,7 @@ export const ProductCollection: React.FC<IProductCollectionProps> = ({
       <Divider orientation="left">{title}</Divider>
       <Row>
         <Col span={4}>
-          <img src={sideImage} alt="img1" className={styles["side-image"]} />
+          <img src={sideImage} alt="img1" className={styles['side-image']} />
         </Col>
         <Col span={20}>
           <Row>

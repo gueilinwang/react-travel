@@ -1,8 +1,8 @@
-import React from "react"
-import styles from "./SideMenu.module.css"
-import { sideMenuList } from "./mockup"
-import { Menu } from "antd"
-import { FireOutlined } from "@ant-design/icons"
+import React from 'react'
+import styles from './SideMenu.module.css'
+import { sideMenuList } from './mockup'
+import { Menu } from 'antd'
+import { FireOutlined } from '@ant-design/icons'
 
 export const SideMenu: React.FC = () => {
   return (
@@ -16,24 +16,28 @@ export const SideMenu: React.FC = () => {
                 <FireOutlined />
                 {m.title}
               </span>
-            }>
+            }
+          >
             {m.subMenu.map((sm, smi) => {
               return (
                 <Menu.SubMenu
-                  key={`sub-menu-${smi}`}
+                  key={`sub-menu-${i}-${smi}`}
                   title={
                     <span>
                       <FireOutlined />
                       {sm.title}
                     </span>
-                  }>
+                  }
+                >
                   {sm.subMenu.map((thirdMenu, thirdI) => {
-                   return (<Menu.Item key={`sub-sub-menu-${thirdI}`}>
-                      <span>
-                        <FireOutlined />
-                        {thirdMenu}
-                      </span>
-                    </Menu.Item>)
+                    return (
+                      <Menu.Item key={`sub-sub-menu-${i}-${smi}-${thirdI}`}>
+                        <span>
+                          <FireOutlined />
+                          {thirdMenu}
+                        </span>
+                      </Menu.Item>
+                    )
                   })}
                 </Menu.SubMenu>
               )
