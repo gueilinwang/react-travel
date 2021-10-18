@@ -1,0 +1,30 @@
+{
+  "header": {
+    "slogan": "Make travel happier",
+    "add_new_language": "add new language",
+    "title": "React Travel",
+    "register": "Register",
+    "signin": "Sign In",
+    "navigator": [
+      "Travel",
+      "Hotel",
+      "Vacation",
+      "Ticket",
+      "High-speed rail",
+      "railway",
+      "Cruise",
+      "Air tickets"
+    ],
+    "search_placeholder": "Please enter the destination or the keyword"
+  },
+  "footer": {
+    "detail": "All rights reserved @ ReactTravel.com"
+  },
+  "home_page": {
+    "hot_recommended": "Hot Recommended",
+    "new_arrival": "New arrival",
+    "domestic_travel": "Domestic travel",
+    "joint_venture": "Joint Venture",
+    "start_from": "(start from)"
+  }
+}

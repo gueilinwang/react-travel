@@ -8,13 +8,15 @@ import {
   Cooperator,
 } from "../../components"
 import { Row, Col, Typography } from "antd"
+import { withTranslation, WithTranslation } from "react-i18next"
 import { productList1, productList2, productList3 } from "./mockup"
 import sideImage1 from "../../assets/images/sider_img1.png"
 import sideImage2 from "../../assets/images/sider_img2.png"
 import sideImage3 from "../../assets/images/sider_img3.png"
 import styles from "./HomePage.module.css"
-export class HomePage extends React.Component {
+class HomePageComponent extends React.Component<WithTranslation> {
   render() {
+    const { t } = this.props
     return (
       <>
         <Header />
@@ -31,31 +33,36 @@ export class HomePage extends React.Component {
           <ProductCollection
             title={
               <Typography.Title level={3} type="warning">
-                爆款推薦
+                {t("home_page.hot_recommended")}
               </Typography.Title>
             }
             sideImage={sideImage1}
-            products={productList1}></ProductCollection>
+            products={productList1}
+          ></ProductCollection>
           <ProductCollection
             title={
               <Typography.Title level={3} type="danger">
-                新品上市
+                {t("home_page.new_arrival")}
               </Typography.Title>
             }
             sideImage={sideImage2}
-            products={productList2}></ProductCollection>
+            products={productList2}
+          ></ProductCollection>
           <ProductCollection
             title={
               <Typography.Title level={3} type="success">
-                國內遊推薦
+                {t("home_page.domestic_travel")}
               </Typography.Title>
             }
             sideImage={sideImage3}
-            products={productList3}></ProductCollection>
-          <Cooperator title="企業合作" />
+            products={productList3}
+          ></ProductCollection>
+          <Cooperator title={t("home_page.joint_venture")} />
         </div>
         <Footer />
       </>
     )
   }
 }
+
+export const HomePage = withTranslation()(HomePageComponent)

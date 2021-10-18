@@ -1,0 +1,30 @@
+{
+  "header": {
+    "slogan": "讓旅行更幸福",
+    "add_new_language": "添加新語言",
+    "title": "React 旅遊網",
+    "register": "註冊",
+    "signin": "登錄",
+    "navigator": [
+      "團體",
+      "訂房",
+      "自由行",
+      "票券",
+      "高鐵",
+      "鐵路",
+      "郵輪",
+      "機票"
+    ],
+    "search_placeholder": "請輸入旅遊目的地、主題或關鍵字"
+  },
+  "footer": {
+    "detail": "版權所有 @ React 旅遊網"
+  },
+  "home_page": {
+    "hot_recommended": "熱門推薦",
+    "new_arrival": "新品上市",
+    "domestic_travel": "國內遊推薦",
+    "joint_venture": "合作企業",
+    "start_from": "(起)"
+  }
+}
