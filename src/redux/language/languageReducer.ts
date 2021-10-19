@@ -1,4 +1,9 @@
 import i18n from "i18next"
+import {
+  CHANGE_LANGUAGE,
+  ADD_LANGUAGE,
+  LanguageActionTypes,
+} from "./languageActions"
 export interface ILanguageState {
   language: "zh-TW" | "en"
   languageList: {
@@ -19,12 +24,15 @@ const defaultLanguageState: ILanguageState = {
     },
   ],
 }
-const languageReducer = (state = defaultLanguageState, action) => {
+const languageReducer = (
+  state = defaultLanguageState,
+  action: LanguageActionTypes
+) => {
   switch (action.type) {
-    case "change_language":
+    case CHANGE_LANGUAGE:
       i18n.changeLanguage(action.payload) //TODO:reducer為純函數,不應該存在side effect
       return { ...state, language: action.payload }
-    case "add_language":
+    case ADD_LANGUAGE:
       return { ...state, languageList: [...state.languageList, action.payload] }
     default:
       return state

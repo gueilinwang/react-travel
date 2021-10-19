@@ -5,9 +5,12 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from "antd"
 import { GlobalOutlined } from "@ant-design/icons"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import store from "../../redux/store"
-import { ILanguageState } from "../../redux/languageReducer"
+import { ILanguageState } from "../../redux/language/languageReducer"
 import { withTranslation, WithTranslation } from "react-i18next"
-
+import {
+  changeLanguageActionCreator,
+  addLanguageActionCreator,
+} from "../../redux/language/languageActions"
 interface IHeaderState extends ILanguageState {}
 class HeaderComponent extends React.Component<
   RouteComponentProps & WithTranslation,
@@ -24,17 +27,11 @@ class HeaderComponent extends React.Component<
   menuClickHandler = (e) => {
     if (e.key === "new") {
       //處理新語言action
-      const action = {
-        type: "add_language",
-        payload: { code: "new", name: "新語言" },
-      }
+      const action = addLanguageActionCreator("新語言", "new")
       store.dispatch(action)
     } else {
       //處理切換語言action
-      const action = {
-        type: "change_language",
-        payload: e.key,
-      }
+      const action = changeLanguageActionCreator(e.key)
       store.dispatch(action)
     }
   }
@@ -45,8 +42,8 @@ class HeaderComponent extends React.Component<
       languageList: newState.languageList,
     })
   }
-  showNavigator=(data:string[])=>{
-    return data.map((title,index)=>{
+  showNavigator = (data: string[]) => {
+    return data.map((title, index) => {
       return <Menu.Item key={index}>{title}</Menu.Item>
     })
   }
@@ -104,7 +101,7 @@ class HeaderComponent extends React.Component<
             ></Input.Search>
           </Layout.Header>
           <Menu mode={"horizontal"} className={styles["main-menu"]}>
-            {this.showNavigator(t("header.navigator",{returnObjects:true}))}
+            {this.showNavigator(t("header.navigator", { returnObjects: true }))}
           </Menu>
         </div>
       </>
