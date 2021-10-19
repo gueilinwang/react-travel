@@ -45,6 +45,11 @@ class HeaderComponent extends React.Component<
       languageList: newState.languageList,
     })
   }
+  showNavigator=(data:string[])=>{
+    return data.map((title,index)=>{
+      return <Menu.Item key={index}>{title}</Menu.Item>
+    })
+  }
   componentDidMount() {
     store.subscribe(this.handleStoreChange)
   }
@@ -99,11 +104,7 @@ class HeaderComponent extends React.Component<
             ></Input.Search>
           </Layout.Header>
           <Menu mode={"horizontal"} className={styles["main-menu"]}>
-            {Array.from(t("header.navigator", { returnObjects: true })).map(
-              (title, i) => {
-                return <Menu.Item key={i}>{title}</Menu.Item>
-              }
-            )}
+            {this.showNavigator(t("header.navigator",{returnObjects:true}))}
           </Menu>
         </div>
       </>
