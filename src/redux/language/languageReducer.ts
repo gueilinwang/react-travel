@@ -1,4 +1,3 @@
-import i18n from "i18next"
 import {
   CHANGE_LANGUAGE,
   ADD_LANGUAGE,
@@ -30,7 +29,6 @@ const languageReducer = (
 ) => {
   switch (action.type) {
     case CHANGE_LANGUAGE:
-      i18n.changeLanguage(action.payload) //TODO:reducer為純函數,不應該存在side effect
       return { ...state, language: action.payload }
     case ADD_LANGUAGE:
       return { ...state, languageList: [...state.languageList, action.payload] }
