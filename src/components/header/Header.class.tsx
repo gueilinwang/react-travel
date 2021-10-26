@@ -14,8 +14,8 @@ import { connect } from "react-redux"
 import { Dispatch } from "redux"
 const mapStateToProps = (state: RootState) => {
   return {
-    language: state.language,
-    languageList: state.languageList,
+    language: state.language.language,
+    languageList: state.language.languageList,
   }
 }
 
@@ -72,8 +72,7 @@ class HeaderComponent extends React.Component<HeaderPropsType> {
                     </Menu.Item>
                   </Menu>
                 }
-                icon={<GlobalOutlined />}
-              >
+                icon={<GlobalOutlined />}>
                 {this.props.language === "zh-TW" ? "中文" : "English"}
               </Dropdown.Button>
               <Button.Group className={styles["button-group"]}>
@@ -89,8 +88,7 @@ class HeaderComponent extends React.Component<HeaderPropsType> {
           <Layout.Header className={styles["main-header"]}>
             <span
               style={{ cursor: "pointer" }}
-              onClick={() => history.push("/")}
-            >
+              onClick={() => history.push("/")}>
               <img src={logo} alt="logo" className={styles["App-logo"]} />
               <Typography.Title className={styles.title} level={3}>
                 {t("header.title")}
@@ -99,8 +97,7 @@ class HeaderComponent extends React.Component<HeaderPropsType> {
 
             <Input.Search
               placeholder={t("header.search_placeholder")}
-              className={styles["search-input"]}
-            ></Input.Search>
+              className={styles["search-input"]}></Input.Search>
           </Layout.Header>
           <Menu mode={"horizontal"} className={styles["main-menu"]}>
             {this.showNavigator(t("header.navigator", { returnObjects: true }))}

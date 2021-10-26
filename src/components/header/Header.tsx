@@ -9,14 +9,14 @@ import {
   changeLanguageActionCreator,
   addLanguageActionCreator,
 } from "../../redux/language/languageActions"
-import { useAppSelector, useAppdispatch } from "../../redux/hooks"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 
 export const Header: React.FC<{}> = () => {
   const history = useHistory()
   const { t } = useTranslation()
-  const language = useAppSelector((state) => state.language)
-  const languageList = useAppSelector((state) => state.languageList)
-  const dispatch = useAppdispatch()
+  const language = useAppSelector((state) => state.language.language)
+  const languageList = useAppSelector((state) => state.language.languageList)
+  const dispatch = useAppDispatch()
   const menuClickHandler = (e) => {
     if (e.key === "new") {
       //處理新語言action
@@ -50,8 +50,7 @@ export const Header: React.FC<{}> = () => {
                   </Menu.Item>
                 </Menu>
               }
-              icon={<GlobalOutlined />}
-            >
+              icon={<GlobalOutlined />}>
               {language === "zh-TW" ? "中文" : "English"}
             </Dropdown.Button>
             <Button.Group className={styles["button-group"]}>
@@ -74,8 +73,7 @@ export const Header: React.FC<{}> = () => {
 
           <Input.Search
             placeholder={t("header.search_placeholder")}
-            className={styles["search-input"]}
-          ></Input.Search>
+            className={styles["search-input"]}></Input.Search>
         </Layout.Header>
         <Menu mode={"horizontal"} className={styles["main-menu"]}>
           {showNavigator(t("header.navigator", { returnObjects: true }))}

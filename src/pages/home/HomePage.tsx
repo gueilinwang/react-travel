@@ -15,25 +15,32 @@ import sideImage2 from "../../assets/images/sider_img2.png"
 import sideImage3 from "../../assets/images/sider_img3.png"
 import styles from "./HomePage.module.css"
 import axios from "axios"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
+import {
+  fetchRecommendProductsStartActionCreator,
+  fetchRecommendProductsSuccessActionCreator,
+  fetchRecommendProductsFailActionCreator,
+} from "../../redux/recommendProducts/recommendProductsAction"
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
-  const [productLists, setProductLists] = React.useState<any[]>([])
-  const [isLoading, setIsLoading] = React.useState<boolean>(true)
-  const [error, setError] = React.useState<string | null>(null)
+  const isLoading = useAppSelector((state) => state.recommendProducts.isLoading)
+  const error = useAppSelector((state) => state.recommendProducts.error)
+  const productLists = useAppSelector(
+    (state) => state.recommendProducts.productLists
+  )
   const loadingIcon = <LoadingOutlined style={{ fontSize: "50px" }} />
-
+  const dispatch = useAppDispatch()
   React.useEffect(() => {
+    dispatch(fetchRecommendProductsStartActionCreator())
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
           "http://123.56.149.216:8080/api/productCollections"
         )
-        setProductLists(data)
-        setIsLoading(false)
+        dispatch(fetchRecommendProductsSuccessActionCreator(data))
       } catch (error) {
         if (error instanceof Error) {
-          setIsLoading(false)
-          setError(error.message)
+          dispatch(fetchRecommendProductsFailActionCreator(error.message))
         }
       }
     }
