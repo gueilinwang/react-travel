@@ -16,11 +16,7 @@ import sideImage3 from "../../assets/images/sider_img3.png"
 import styles from "./HomePage.module.css"
 import axios from "axios"
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"
-import {
-  fetchRecommendProductsStartActionCreator,
-  fetchRecommendProductsSuccessActionCreator,
-  fetchRecommendProductsFailActionCreator,
-} from "../../redux/recommendProducts/recommendProductsAction"
+import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsAction"
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
   const isLoading = useAppSelector((state) => state.recommendProducts.isLoading)
@@ -31,20 +27,7 @@ export const HomePage: React.FC = () => {
   const loadingIcon = <LoadingOutlined style={{ fontSize: "50px" }} />
   const dispatch = useAppDispatch()
   React.useEffect(() => {
-    dispatch(fetchRecommendProductsStartActionCreator())
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(
-          "http://123.56.149.216:8080/api/productCollections"
-        )
-        dispatch(fetchRecommendProductsSuccessActionCreator(data))
-      } catch (error) {
-        if (error instanceof Error) {
-          dispatch(fetchRecommendProductsFailActionCreator(error.message))
-        }
-      }
-    }
-    fetchData()
+    getDataActionCreator()
   }, [])
 
   if (isLoading) {
@@ -79,7 +62,8 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage1}
-          products={productLists[0].touristRoutes}></ProductCollection>
+          products={productLists[0].touristRoutes}
+        ></ProductCollection>
         <ProductCollection
           title={
             <Typography.Title level={3} type="danger">
@@ -87,7 +71,8 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage2}
-          products={productLists[1].touristRoutes}></ProductCollection>
+          products={productLists[1].touristRoutes}
+        ></ProductCollection>
         <ProductCollection
           title={
             <Typography.Title level={3} type="success">
@@ -95,7 +80,8 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage3}
-          products={productLists[2].touristRoutes}></ProductCollection>
+          products={productLists[2].touristRoutes}
+        ></ProductCollection>
         <Cooperator title={t("home_page.joint_venture")} />
       </div>
       <Footer />
