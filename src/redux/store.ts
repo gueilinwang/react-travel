@@ -1,7 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
+import { composeWithDevTools } from "redux-devtools-extension"
 import languageReducer from "./language/languageReducer"
 import recommendProductsReducer from "./recommendProducts/recommendProductsReducer"
-import thunk from "redux-thunk"
 import { actionLog } from "./middlewares/actionLog"
 import { languageChange } from "./middlewares/languageChange"
 
@@ -11,7 +12,7 @@ const rootReducer = combineReducers({
 })
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk, actionLog, languageChange)
+  composeWithDevTools(applyMiddleware(thunk, actionLog, languageChange))
 )
 
 export type RootState = ReturnType<typeof store.getState>
