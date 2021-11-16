@@ -14,20 +14,20 @@ import sideImage1 from "../../assets/images/sider_img1.png"
 import sideImage2 from "../../assets/images/sider_img2.png"
 import sideImage3 from "../../assets/images/sider_img3.png"
 import styles from "./HomePage.module.css"
-import axios from "axios"
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsAction"
+import { useDispatch } from "react-redux"
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const isLoading = useAppSelector((state) => state.recommendProducts.isLoading)
   const error = useAppSelector((state) => state.recommendProducts.error)
   const productLists = useAppSelector(
     (state) => state.recommendProducts.productLists
   )
   const loadingIcon = <LoadingOutlined style={{ fontSize: "50px" }} />
-  const dispatch = useAppDispatch()
   React.useEffect(() => {
-    getDataActionCreator()
+    dispatch(getDataActionCreator())
   }, [])
 
   if (isLoading) {
@@ -62,8 +62,7 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage1}
-          products={productLists[0].touristRoutes}
-        ></ProductCollection>
+          products={productLists[0].touristRoutes}></ProductCollection>
         <ProductCollection
           title={
             <Typography.Title level={3} type="danger">
@@ -71,8 +70,7 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage2}
-          products={productLists[1].touristRoutes}
-        ></ProductCollection>
+          products={productLists[1].touristRoutes}></ProductCollection>
         <ProductCollection
           title={
             <Typography.Title level={3} type="success">
@@ -80,8 +78,7 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage3}
-          products={productLists[2].touristRoutes}
-        ></ProductCollection>
+          products={productLists[2].touristRoutes}></ProductCollection>
         <Cooperator title={t("home_page.joint_venture")} />
       </div>
       <Footer />

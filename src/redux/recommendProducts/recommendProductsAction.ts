@@ -67,23 +67,3 @@ export const getDataActionCreator =
       }
     }
   }
-// export const getDataActionCreator =
-//   (): ThunkAction<void, RootState, unknown, RecommendProductsAction> =>
-//   (dispatch, getState) => {
-//     dispatch(fetchRecommendProductsStartActionCreator())
-//     const fetchData = async () => {
-//       console.log("1111")
-//       try {
-//         const { data } = await axios.get(
-//           "http://123.56.149.216:8080/api/productCollections"
-//         )
-//         console.log("拿到資料")
-//         dispatch(fetchRecommendProductsSuccessActionCreator(data))
-//       } catch (error) {
-//         if (error instanceof Error) {
-//           dispatch(fetchRecommendProductsFailActionCreator(error.message))
-//         }
-//       }
-//     }
-//     fetchData()
-//   }
