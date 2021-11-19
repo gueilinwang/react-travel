@@ -1,27 +1,24 @@
-import React from 'react'
-import { Image, Typography } from 'antd'
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
-interface IProductImageProps extends RouteComponentProps {
+import React from "react"
+import { Image, Typography } from "antd"
+import { Link } from "react-router-dom"
+interface IProductImageProps {
   id: string | number
-  size: 'large' | 'small'
+  size: "large" | "small"
   imageSrc: string
   price: number | string
   title: string
 }
 
-const ProductImageComponent: React.FC<IProductImageProps> = ({
+const ProductImage: React.FC<IProductImageProps> = ({
   id,
   size,
   imageSrc,
   price,
   title,
-  history,
-  location,
-  match,
 }) => {
   return (
     <Link to={`detail/${id}`}>
-      {size === 'large' ? (
+      {size === "large" ? (
         <Image src={imageSrc} height={285} width={490} />
       ) : (
         <Image src={imageSrc} height={120} width={240} />
@@ -35,5 +32,4 @@ const ProductImageComponent: React.FC<IProductImageProps> = ({
     </Link>
   )
 }
-const ProductImage = withRouter(ProductImageComponent)
 export default ProductImage

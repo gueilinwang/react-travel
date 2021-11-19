@@ -1,3 +1,6 @@
+:global(.ant-menu-horizontal::after) {
+  content: none;
+}
 .app-header {
   background-color: #fff !important;
 }
