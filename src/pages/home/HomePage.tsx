@@ -17,7 +17,7 @@ import styles from "./HomePage.module.css"
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsAction"
 import { useDispatch } from "react-redux"
-export const HomePage: React.FC = () => {
+export const HomePage: React.FC = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const isLoading = useAppSelector((state) => state.recommendProducts.isLoading)
