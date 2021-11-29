@@ -1,14 +1,17 @@
-import { createStore, combineReducers, applyMiddleware } from "redux"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 import languageReducer from "./language/languageReducer"
 import recommendProductsReducer from "./recommendProducts/recommendProductsReducer"
 import { actionLog } from "./middlewares/actionLog"
 import { languageChange } from "./middlewares/languageChange"
+import productDetailReducer from "./productDetail/slice"
 
 const rootReducer = combineReducers({
   language: languageReducer,
   recommendProducts: recommendProductsReducer,
+  productDetail: productDetailReducer,
 })
 /**
 const combinReducers=(reducer)=>{
@@ -27,10 +30,16 @@ const rootReducer=(state={},action)=>{
   }
 }
 */
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk, actionLog, languageChange))
-)
+
+// const store = createStore(
+//   rootReducer,
+//   composeWithDevTools(applyMiddleware(thunk, actionLog, languageChange))
+// )
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), actionLog],
+  devTools: true,
+})
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = ReturnType<typeof store.dispatch>

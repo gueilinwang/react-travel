@@ -16,6 +16,9 @@ import { Header, Footer, ProductIntro, ProductComments } from "../../components"
 import styles from "./DetailPage.module.css"
 import locale from "antd/es/date-picker/locale/zh_TW"
 import { commentMockData } from "./mockup"
+import { getProductDetail } from "../../redux/productDetail/slice"
+import { useDispatch } from "react-redux"
+import { useAppSelector } from "../../redux/hooks"
 interface IMatchParams {
   touristRouteId: string
 }
@@ -23,29 +26,14 @@ export const DetailPage: React.FC<RouteComponentProps<IMatchParams>> = (
   props
 ) => {
   const { touristRouteId } = props.match.params //從props.match.params獲得參數
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [product, setProduct] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
+  const isLoading = useAppSelector((state) => state.productDetail.isLoading)
+  const error = useAppSelector((state) => state.productDetail.error)
+  const product = useAppSelector((state) => state.productDetail.data)
   const loadingIcon = <LoadingOutlined style={{ fontSize: "50px" }} />
   const { RangePicker } = DatePicker
+  const dispatch = useDispatch()
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      try {
-        const { data } = await axios.get(
-          `http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`
-        )
-        setProduct(data)
-        setIsLoading(false)
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message)
-        }
-        setIsLoading(false)
-      }
-    }
-
-    fetchData()
+    dispatch(getProductDetail(touristRouteId))
   }, [])
   if (isLoading) {
     return (
@@ -85,12 +73,12 @@ export const DetailPage: React.FC<RouteComponentProps<IMatchParams>> = (
         </div>
         {/* 錨點菜單 */}
         <Anchor className={styles["product-detail-anchor"]}>
-          <Menu mode="horizontal">
+          <Menu mode="horizontal" style={{ justifyContent: "center" }}>
             <Menu.Item key="1">
-              <Anchor.Link href="#feature" title="產品特色"></Anchor.Link>
+              <Anchor.Link href="#features" title="產品特色"></Anchor.Link>
             </Menu.Item>
             <Menu.Item key="3">
-              <Anchor.Link href="#fee" title="費用"></Anchor.Link>
+              <Anchor.Link href="#fees" title="費用"></Anchor.Link>
             </Menu.Item>
             <Menu.Item key="4">
               <Anchor.Link href="#notes" title="預定須知"></Anchor.Link>
@@ -101,7 +89,7 @@ export const DetailPage: React.FC<RouteComponentProps<IMatchParams>> = (
           </Menu>
         </Anchor>
         {/* 產品特色 */}
-        <div id="feature" className={styles["product-detail-container"]}>
+        <div id="features" className={styles["product-detail-container"]}>
           <Divider orientation={"center"}>
             <Typography.Title level={3}>產品特色</Typography.Title>
           </Divider>
