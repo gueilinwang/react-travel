@@ -7,11 +7,13 @@ import recommendProductsReducer from "./recommendProducts/recommendProductsReduc
 import { actionLog } from "./middlewares/actionLog"
 import { languageChange } from "./middlewares/languageChange"
 import productDetailReducer from "./productDetail/slice"
+import productSearchReducer from "./productSearch/slice"
 
 const rootReducer = combineReducers({
   language: languageReducer,
   recommendProducts: recommendProductsReducer,
   productDetail: productDetailReducer,
+  productSearch: productSearchReducer,
 })
 /**
 const combinReducers=(reducer)=>{
@@ -37,7 +39,11 @@ const rootReducer=(state={},action)=>{
 // )
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), actionLog],
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    actionLog,
+    languageChange,
+  ],
   devTools: true,
 })
 

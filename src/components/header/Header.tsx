@@ -73,7 +73,9 @@ export const Header: React.FC<{}> = () => {
 
           <Input.Search
             placeholder={t("header.search_placeholder")}
-            className={styles["search-input"]}></Input.Search>
+            className={styles["search-input"]}
+            onSearch={(keywords) => history.push("/search/" + keywords)}
+          />
         </Layout.Header>
         <Menu mode={"horizontal"} className={styles["main-menu"]}>
           {showNavigator(t("header.navigator", { returnObjects: true }))}
