@@ -4,8 +4,7 @@ import styles from "./SearchPage.module.css"
 import { useParams, useLocation } from "react-router"
 import { Spin } from "antd"
 import { getProductSearch } from "../../redux/productSearch/slice"
-import { useAppSelector } from "../../redux/hooks"
-import { useDispatch } from "react-redux"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import { LoadingOutlined } from "@ant-design/icons"
 interface IMatchParams {
   keywords: string
@@ -16,7 +15,7 @@ export const SearchPage: React.FC<{}> = () => {
   const error = useAppSelector((state) => state.productSearch.error)
   const paginayion = useAppSelector((state) => state.productSearch.pagination)
   const productList = useAppSelector((state) => state.productSearch.data)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const location = useLocation()
   const loadingIcon = <LoadingOutlined style={{ fontSize: "50px" }} />
   useEffect(() => {

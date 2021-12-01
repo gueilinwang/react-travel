@@ -48,12 +48,9 @@ const productSearchSlice = createSlice({
       state.data = action.payload.data
       state.pagination = action.payload.pagination
     },
-    [getProductSearch.rejected.type]: (
-      state,
-      action: PayloadAction<string | null>
-    ) => {
+    [getProductSearch.rejected.type]: (state, action) => {
       state.isLoading = false
-      state.error = action.payload
+      state.error = action.error.message
     },
   },
 })

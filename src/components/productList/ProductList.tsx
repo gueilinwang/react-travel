@@ -25,7 +25,7 @@ interface PropsType {
 }
 
 const listData = (productList: Product[]) =>
-  productList.map((p) => ({
+  productList?.map((p) => ({
     id: p.id,
     title: p.title,
     description: p.description,

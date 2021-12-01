@@ -14,12 +14,11 @@ import sideImage1 from "../../assets/images/sider_img1.png"
 import sideImage2 from "../../assets/images/sider_img2.png"
 import sideImage3 from "../../assets/images/sider_img3.png"
 import styles from "./HomePage.module.css"
-import { useAppSelector } from "../../redux/hooks"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsAction"
-import { useDispatch } from "react-redux"
 export const HomePage: React.FC = (props) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isLoading = useAppSelector((state) => state.recommendProducts.isLoading)
   const error = useAppSelector((state) => state.recommendProducts.error)
   const productLists = useAppSelector(

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { RouteComponentProps } from "react-router-dom"
-import axios from "axios"
 import {
   Spin,
   Typography,
@@ -17,8 +16,7 @@ import styles from "./DetailPage.module.css"
 import locale from "antd/es/date-picker/locale/zh_TW"
 import { commentMockData } from "./mockup"
 import { getProductDetail } from "../../redux/productDetail/slice"
-import { useDispatch } from "react-redux"
-import { useAppSelector } from "../../redux/hooks"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 interface IMatchParams {
   touristRouteId: string
 }
@@ -31,7 +29,7 @@ export const DetailPage: React.FC<RouteComponentProps<IMatchParams>> = (
   const product = useAppSelector((state) => state.productDetail.data)
   const loadingIcon = <LoadingOutlined style={{ fontSize: "50px" }} />
   const { RangePicker } = DatePicker
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getProductDetail(touristRouteId))
   }, [])
