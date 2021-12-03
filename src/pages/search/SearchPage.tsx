@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { MainLayout } from "src/layouts/mainLayout"
 import { Header, Footer, FilterArea, ProductList } from "../../components"
 import styles from "./SearchPage.module.css"
 import { useParams, useLocation } from "react-router"
@@ -39,8 +40,7 @@ export const SearchPage: React.FC<{}> = () => {
 
   return (
     <>
-      <Header />
-      <div className={styles["page-content"]}>
+      <MainLayout>
         {/* 產品篩選器 */}
         <div className={styles["product-list-container"]}>
           <FilterArea />
@@ -53,9 +53,7 @@ export const SearchPage: React.FC<{}> = () => {
             onPageChange={onPageChange}
           />
         </div>
-      </div>
-
-      <Footer />
+      </MainLayout>
     </>
   )
 }

@@ -11,7 +11,8 @@ import {
   Menu,
 } from "antd"
 import { LoadingOutlined } from "@ant-design/icons"
-import { Header, Footer, ProductIntro, ProductComments } from "../../components"
+import { MainLayout } from "../../layouts/mainLayout"
+import { ProductIntro, ProductComments } from "../../components"
 import styles from "./DetailPage.module.css"
 import locale from "antd/es/date-picker/locale/zh_TW"
 import { commentMockData } from "./mockup"
@@ -47,8 +48,7 @@ export const DetailPage: React.FC<RouteComponentProps<IMatchParams>> = (
 
   return (
     <>
-      <Header />
-      <div className={styles["page-content"]}>
+      <MainLayout>
         {/* 產品簡介與日期選擇區塊 */}
         <div className={styles["product-intro-container"]}>
           <Row>
@@ -122,9 +122,7 @@ export const DetailPage: React.FC<RouteComponentProps<IMatchParams>> = (
             <ProductComments data={commentMockData} />
           </div>
         </div>
-      </div>
-
-      <Footer />
+      </MainLayout>
     </>
   )
 }

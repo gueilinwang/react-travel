@@ -1,7 +1,6 @@
 import React from "react"
+import { MainLayout } from "../../layouts/mainLayout"
 import {
-  Header,
-  Footer,
   Carousel,
   SideMenu,
   ProductCollection,
@@ -13,7 +12,6 @@ import { useTranslation } from "react-i18next"
 import sideImage1 from "../../assets/images/sider_img1.png"
 import sideImage2 from "../../assets/images/sider_img2.png"
 import sideImage3 from "../../assets/images/sider_img3.png"
-import styles from "./HomePage.module.css"
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsAction"
 export const HomePage: React.FC = (props) => {
@@ -43,9 +41,7 @@ export const HomePage: React.FC = (props) => {
 
   return (
     <>
-      <Header />
-      {/**頁面內容 */}
-      <div className={styles["page-contnet"]}>
+      <MainLayout>
         <Row style={{ marginTop: 20 }}>
           <Col span={6}>
             <SideMenu />
@@ -79,8 +75,7 @@ export const HomePage: React.FC = (props) => {
           sideImage={sideImage3}
           products={productLists[2].touristRoutes}></ProductCollection>
         <Cooperator title={t("home_page.joint_venture")} />
-      </div>
-      <Footer />
+      </MainLayout>
     </>
   )
 }
