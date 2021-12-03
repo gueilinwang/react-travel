@@ -2,11 +2,13 @@ import React from "react"
 import styles from "./UserLayout.module.css"
 import logo from "../../assets/logo.svg"
 import { Link } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import { CaretDownOutlined } from "@ant-design/icons"
 import { Layout, Menu, Dropdown, Button } from "antd"
 const { Header, Footer, Content } = Layout
 
 export const UserLayout: React.FC = (props) => {
+  const { t } = useTranslation()
   const menu = (
     <Menu>
       <Menu.Item>中文</Menu.Item>
@@ -34,11 +36,10 @@ export const UserLayout: React.FC = (props) => {
               <span className={styles["title"]}>React 旅遊網</span>
             </Link>
           </div>
-          <div className={styles["desc"]}>slogan</div>
           {props.children}
         </div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>Footer</Footer>
+      <Footer style={{ textAlign: "center" }}></Footer>
     </Layout>
   )
 }

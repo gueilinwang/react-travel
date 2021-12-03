@@ -26,5 +26,14 @@
     "domestic_travel": "國內遊推薦",
     "joint_venture": "合作企業",
     "start_from": "(起)"
+  },
+  "register_page": {
+    "chooseLanguage": "選擇語言",
+    "register": "註冊頁",
+    "userName": "使用者名稱",
+    "password": "密碼",
+    "confirmPassword": "確認密碼",
+    "rememberMe": "記住我",
+    "submit": "確認"
   }
 }

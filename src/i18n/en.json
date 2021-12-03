@@ -26,5 +26,14 @@
     "domestic_travel": "Domestic travel",
     "joint_venture": "Joint Venture",
     "start_from": "(start from)"
+  },
+  "register_page": {
+    "chooseLanguage": "Choose Language",
+    "register": "Register Page",
+    "userName": "userName",
+    "password": "password",
+    "confirmPassword": "Confirm Password",
+    "rememberMe": "Remember Me",
+    "submit": "Submit"
   }
 }
