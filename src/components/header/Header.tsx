@@ -54,10 +54,10 @@ export const Header: React.FC<{}> = () => {
               {language === "zh-TW" ? "中文" : "English"}
             </Dropdown.Button>
             <Button.Group className={styles["button-group"]}>
-              <Button onClick={() => history.push("register")}>
+              <Button onClick={() => history.push("/register")}>
                 {t("header.register")}
               </Button>
-              <Button onClick={() => history.push("signin")}>
+              <Button onClick={() => history.push("/signin")}>
                 {t("header.signin")}
               </Button>
             </Button.Group>

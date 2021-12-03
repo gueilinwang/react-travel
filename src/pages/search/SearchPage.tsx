@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
-import { MainLayout } from "src/layouts/mainLayout"
-import { Header, Footer, FilterArea, ProductList } from "../../components"
+import { MainLayout } from "../../layouts/mainLayout"
+import { FilterArea, ProductList } from "../../components"
 import styles from "./SearchPage.module.css"
 import { useParams, useLocation } from "react-router"
 import { Spin } from "antd"
