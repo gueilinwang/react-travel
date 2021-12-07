@@ -1,6 +1,7 @@
 import { Form, Input, Button, Checkbox } from "antd"
 import styles from "./RegisterForm.module.css"
-
+import axios from "axios"
+import { useHistory } from "react-router"
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -10,8 +11,20 @@ const tailLayout = {
 }
 
 export const RegisterForm = () => {
-  const onFinish = (values: any) => {
+  const history = useHistory()
+
+  const onFinish = async (values: any) => {
     console.log("Success:", values)
+    try {
+      await axios.post("http://123.56.149.216:8080/auth/register", {
+        email: values.username,
+        password: values.password,
+        confirmPassword: values.confirm,
+      })
+      history.push("/signIn/")
+    } catch (error) {
+      alert("註冊失敗!")
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
