@@ -1,5 +1,6 @@
 import React from "react"
 import { UserLayout } from "../../layouts/userLayout"
+import { SignInForm } from "../../components"
 // import styles from "./SignInPage.module.css"
 export const SignInPage: React.FC = (props) => {
   console.log("props", props)
@@ -7,6 +8,7 @@ export const SignInPage: React.FC = (props) => {
     <>
       <UserLayout>
         <h1>登錄頁面</h1>
+        <SignInForm />
       </UserLayout>
     </>
   )
