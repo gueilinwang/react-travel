@@ -1,7 +1,7 @@
 import { Form, Input, Button, Checkbox } from "antd"
 import styles from "./RegisterForm.module.css"
 import axios from "axios"
-import { useHistory } from "react-router"
+import { useHistory } from "react-router-dom"
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },

@@ -9,10 +9,8 @@ import store from "./redux/store"
 import axios from "axios"
 axios.defaults.headers["x-icode"] = "02BE11D2BDEFD5C3"
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 )

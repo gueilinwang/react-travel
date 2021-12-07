@@ -1,5 +1,9 @@
+import React, { useEffect } from "react"
 import styles from "./SignInForm.module.css"
 import { Form, Input, Button, Checkbox } from "antd"
+import { signIn } from "../../redux/user/slice"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { useHistory } from "react-router-dom"
 
 const layout = {
   labelCol: { span: 8 },
@@ -9,9 +13,23 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 }
 
-export const SignInForm = () => {
+export const SignInForm: React.FC = () => {
+  const isloading = useAppSelector((state) => state.user.isLoading)
+  const jwt = useAppSelector((state) => state.user.token)
+  const error = useAppSelector((state) => state.user.error)
+  const dispatch = useAppDispatch()
+  const history = useHistory()
+
+  //依據API回應判斷jwt的值是否為null
+  useEffect(() => {
+    if (jwt !== null) {
+      history.push("/")
+    }
+  }, [jwt])
+
   const onFinish = (values: any) => {
     console.log("Success:", values)
+    dispatch(signIn({ email: values.username, password: values.password }))
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -45,7 +63,7 @@ export const SignInForm = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={isloading}>
           Submit
         </Button>
       </Form.Item>

@@ -8,12 +8,14 @@ import { actionLog } from "./middlewares/actionLog"
 import { languageChange } from "./middlewares/languageChange"
 import productDetailReducer from "./productDetail/slice"
 import productSearchReducer from "./productSearch/slice"
+import userSliceReducer from "./user/slice"
 
 const rootReducer = combineReducers({
   language: languageReducer,
   recommendProducts: recommendProductsReducer,
   productDetail: productDetailReducer,
   productSearch: productSearchReducer,
+  user: userSliceReducer,
 })
 /**
 const combinReducers=(reducer)=>{

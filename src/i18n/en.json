@@ -5,6 +5,9 @@
     "title": "React Travel",
     "register": "Register",
     "signin": "Sign In",
+    "shoppingCart": "Shopping Cart",
+    "signOut": "Sign Out",
+    "welcome": "Welcome back ",
     "navigator": [
       "Travel",
       "Hotel",
