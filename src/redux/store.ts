@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import { createStore, applyMiddleware } from "redux"
-import thunk from "redux-thunk"
-import { composeWithDevTools } from "redux-devtools-extension"
+// import thunk from "redux-thunk"  RTK自帶插件
+// import { composeWithDevTools } from "redux-devtools-extension"  RTK自帶插件
 import languageReducer from "./language/languageReducer"
 import recommendProductsReducer from "./recommendProducts/recommendProductsReducer"
 import { actionLog } from "./middlewares/actionLog"
@@ -9,7 +9,13 @@ import { languageChange } from "./middlewares/languageChange"
 import productDetailReducer from "./productDetail/slice"
 import productSearchReducer from "./productSearch/slice"
 import userSliceReducer from "./user/slice"
-
+import { persistStore, persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage"
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["user"], //只會保存rootReducer中的user資料
+}
 const rootReducer = combineReducers({
   language: languageReducer,
   recommendProducts: recommendProductsReducer,
@@ -17,6 +23,7 @@ const rootReducer = combineReducers({
   productSearch: productSearchReducer,
   user: userSliceReducer,
 })
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 /**
 const combinReducers=(reducer)=>{
   reutrn (state={},action)=>{
@@ -39,8 +46,9 @@ const rootReducer=(state={},action)=>{
 //   rootReducer,
 //   composeWithDevTools(applyMiddleware(thunk, actionLog, languageChange))
 // )
+
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer, //將rootReducer換成persistedReducer
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware(),
     actionLog,
@@ -48,8 +56,9 @@ const store = configureStore({
   ],
   devTools: true,
 })
+const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
-export default store
+export default { store, persistor }
